@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
@@ -31,6 +31,7 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
+  const router = useRouter();
 
   async function onSubmit(data: FormData) {
     setIsLoading(true)
@@ -50,7 +51,7 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
           variant: "destructive",
         })
       }
-
+      router.push("/dashboard")
       toast({
         title: "Check your email",
         description:

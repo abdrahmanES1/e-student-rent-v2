@@ -1,5 +1,5 @@
 import * as React from "react"
-import Image from "next/image"
+import { MdxImage as Image } from '@/components/MdxImage'
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 import { cn } from "@/lib/utils"
