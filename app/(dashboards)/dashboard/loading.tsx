@@ -1,21 +1,37 @@
-import { DashboardHeader } from "@/components/header"
-import { PostCreateButton } from "@/components/post-create-button"
-import { PostItem } from "@/components/post-item"
-import { DashboardShell } from "@/components/shell"
+import { Skeleton } from '@/components/ui/skeleton';
 
-export default function DashboardLoading() {
+const DashboardSkeleton = () => {
   return (
-    <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
-        <PostCreateButton />
-      </DashboardHeader>
-      <div className="divide-border-200 divide-y rounded-md border">
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
+    <>
+      <div className="flex items-center space-y-2">
+        <Skeleton className="w-[200px] h-[32px] rounded-full" />
+        <Skeleton className="w-[100px] h-[32px] rounded-md" />
+        <Skeleton className="w-[100px] h-[32px] rounded-md" />
       </div>
-    </DashboardShell>
-  )
-}
+      <div className="flex space-y-4 mt-4">
+        <Skeleton className="w-full h-[48px] rounded-md" />
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-4">
+        {[...Array(4)].map((_, index) => (
+          <div key={index} className="p-4 border rounded-md">
+            <Skeleton className="w-[100px] h-[20px] mb-2" />
+            <Skeleton className="w-full h-[32px] mb-2" />
+            <Skeleton className="w-1/2 h-[20px]" />
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 mt-4">
+        <div className="col-span-1 lg:col-span-4 p-4 border rounded-md">
+          <Skeleton className="w-[120px] h-[24px] mb-4" />
+          <Skeleton className="w-full h-[200px]" />
+        </div>
+        <div className="col-span-1 lg:col-span-3 p-4 border rounded-md">
+          <Skeleton className="w-[120px] h-[24px] mb-2" />
+          <Skeleton className="w-full h-[200px]" />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DashboardSkeleton;

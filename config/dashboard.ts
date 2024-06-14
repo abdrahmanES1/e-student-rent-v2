@@ -24,6 +24,11 @@ export const dashboardConfig: DashboardConfig = {
       icon: "post",
     },
     {
+      title: "Tasks",
+      href: "/dashboard/tasks",
+      icon: "list-todo",
+    },
+    {
       title: "Billing",
       href: "/dashboard/billing",
       icon: "billing",
