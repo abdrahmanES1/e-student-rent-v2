@@ -23,6 +23,7 @@ import {
   Twitter,
   User,
   X,
+  LayoutDashboard,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -69,4 +70,5 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+  "layout-dashboard":LayoutDashboard
 }
