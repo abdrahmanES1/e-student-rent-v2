@@ -51,7 +51,7 @@ export function LayoutNav({ items }: DashboardNavProps) {
 
   console.log(path)
   return (
-    <nav className="grid items-start gap-1 grid-cols-4">
+    <nav className="grid items-start gap-1 grid-cols-4 lg:grid-rows-6 lg:grid-cols-1">
       {items.map((item, index) => {
         const Icon = Icons[item.icon || "arrowRight"]
         return (
