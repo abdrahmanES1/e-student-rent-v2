@@ -2,11 +2,11 @@ import { SiteConfig } from "types"
 
 // TODO : change for the deployment mode
 export const siteConfig: SiteConfig = {
-  name: "Startnow",
+  name: "TalibHousing",
   description:
-    "An open source application built using the new router, server components and everything new in Next.js 13.",
-  url: "https://tx.shadcn.com",
-  ogImage: "https://tx.shadcn.com/og.jpg",
+    "Visit this website now to find out about student rent or student house, find a suitable student house to rent, or find a student accommodation to rent in your area.",
+  url: "http://localhost",
+  ogImage: "http://localhost",
   links: {
     twitter: "https://github.com/abdrahmanES1",
     github: "https://github.com/abdrahmanES1",

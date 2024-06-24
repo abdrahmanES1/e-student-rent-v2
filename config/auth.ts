@@ -1,13 +1,10 @@
-import { compareHashPassword } from "@/utils/password"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import NextAuth, { type NextAuthConfig } from "next-auth"
+import { cookies } from "next/headers"
+import { axiosInstance } from "@/utils/axiosInstance"
+import { type NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import GitHubProvider from "next-auth/providers/github"
 
-// import { Client } from "postmark"
-
 import { env } from "@/env.mjs"
-import { db } from "@/lib/db"
 
 export default {
   session: {
@@ -27,27 +24,21 @@ export default {
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials, req) => {
-        const user = await db.user.findUnique({
-          where: {
-            email: credentials?.email as string,
-          },
-        })
+        try {
+          const res = await axiosInstance.post("/api/auth/login", {
+            ...credentials,
+          })
+          const token = await res.data.token
 
-        if (!user) {
-          console.log("No user found")
-          throw new Error("No user found")
+          cookies().set("token", token)
+          const {
+            data: { data: user },
+          } = await axiosInstance.get("/api/auth/me")
+          return user
+        } catch (error) {
+          throw new Error(error)
           return null
         }
-        const validUser = await compareHashPassword(
-          credentials.password as string,
-          user?.password!
-        )
-        if (!validUser) {
-          throw new Error("Password mismatch")
-          return null
-        }
-
-        return user
       },
     }),
   ],
@@ -76,9 +67,11 @@ export default {
     async jwt({ token, user }) {
       if (user) {
         const u = user as unknown as any
+
         return {
           ...token,
-          id: u.id,
+          ...user,
+          id: u._id,
           randomKey: u.randomKey,
         }
       }

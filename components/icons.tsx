@@ -12,17 +12,21 @@ import {
   Image,
   Laptop,
   LayoutDashboard,
+  List,
   Loader2,
   LucideProps,
   Moon,
   MoreVertical,
   Pizza,
   Plus,
+  Rss,
+  Search,
   Settings,
   SunMedium,
   Trash,
   Twitter,
   User,
+  UserCheck,
   X,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -30,7 +34,42 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
-  logo: Command,
+  logo: ({ ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 7l10 5 10-5"></path>
+    </svg>
+  ),
+  "list-todo": ({ ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-list-todo"
+      {...props}
+    >
+      <rect x="3" y="5" width="6" height="6" rx="1" />
+      <path d="m3 17 2 2 4-4" />
+      <path d="M13 6h8" />
+      <path d="M13 12h8" />
+      <path d="M13 18h8" />
+    </svg>
+  ),
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
@@ -70,26 +109,11 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+
   "layout-dashboard": LayoutDashboard,
-  "list-todo": ({ ...props }: LucideProps) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-list-todo"
-      {...props}
-    >
-      <rect x="3" y="5" width="6" height="6" rx="1" />
-      <path d="m3 17 2 2 4-4" />
-      <path d="M13 6h8" />
-      <path d="M13 12h8" />
-      <path d="M13 18h8" />
-    </svg>
-  ),
+
+  search: Search,
+  list: List,
+  ui: UserCheck,
+  rss: Rss,
 }
