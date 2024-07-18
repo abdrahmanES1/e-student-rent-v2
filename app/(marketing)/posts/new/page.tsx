@@ -64,8 +64,8 @@ export default function Component() {
                   Bedrooms
                 </Label>
                 <Select
-                  id="bedrooms"
-                  className="border-input focus:ring-primary focus:border-primary"
+                  // id="bedrooms"
+                  // className="border-input focus:ring-primary focus:border-primary"
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select" />
@@ -108,8 +108,8 @@ export default function Component() {
                   Bedrooms
                 </Label>
                 <Select
-                  id="bedrooms"
-                  className="border-input focus:ring-primary focus:border-primary"
+                  // id="bedrooms"
+                  // className="border-input focus:ring-primary focus:border-primary"
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select" />
