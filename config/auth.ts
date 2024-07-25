@@ -33,7 +33,9 @@ export default {
           cookies().set("token", token)
           const {
             data: { data: user },
-          } = await axiosInstance.get("/api/auth/me")
+          } = await axiosInstance.get("/api/auth/me", {
+            headers: { Authorization: `Bearer ${token}` },
+          })
           return user
         } catch (error) {
           throw new Error(error)
