@@ -3,9 +3,10 @@ import localFont from "next/font/local"
 
 import "@/styles/globals.css"
 import React from "react"
+import { SessionProvider } from "next-auth/react"
 
 import { siteConfig } from "@/config/site"
-import {  cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
@@ -34,7 +35,7 @@ export const metadata = {
   },
   description: siteConfig.description,
   keywords: [
-"Student rentals Morocco",
+    "Student rentals Morocco",
     "Accommodation for students in Morocco",
     "Student housing Morocco",
     "Apartments for rent near campus Morocco",
@@ -103,8 +104,7 @@ export const metadata = {
     "Multicultural student rentals Morocco",
     "Eco-friendly student rentals Morocco",
     "Community events in student housing Morocco",
-    "Networking opportunities in student accommodation Morocco"
-
+    "Networking opportunities in student accommodation Morocco",
   ],
   authors: [
     {
@@ -152,10 +152,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Analytics />
-          <Toaster />
-          <TailwindIndicator />
+          <SessionProvider>
+            {children}
+            <Analytics />
+            <Toaster />
+            <TailwindIndicator />
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>
