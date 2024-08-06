@@ -1,6 +1,8 @@
 "use client"
 
+import { cookies } from "next/headers"
 import Link from "next/link"
+import Cookies from "js-cookie"
 import { signOut, useSession } from "next-auth/react"
 
 import { cn } from "@/lib/utils"
@@ -18,6 +20,8 @@ export default function LoginButton() {
           onClick={(e) => {
             e.preventDefault()
             signOut({ redirect: false })
+            Cookies.remove("user")
+            Cookies.remove("token")
           }}
           href="#"
           className={cn(

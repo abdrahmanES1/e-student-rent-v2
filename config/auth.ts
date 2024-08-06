@@ -87,10 +87,12 @@ export default {
       if (account.provider == "github") {
         try {
           const { email, name } = user
-          const res = await axiosInstance.post("/api/auth/register", {
+
+          let res
+
+          res = await axiosInstance.post("/api/auth/github", {
             username: name,
             email: email,
-            password: "1234567890",
           })
           const token = await res.data.token
 
