@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
 import { axiosInstance } from "@/utils/axiosInstance"
-import { type NextAuthConfig } from "next-auth"
+import { Account, User as AuthUser, type NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import GitHubProvider from "next-auth/providers/github"
 
@@ -36,6 +36,7 @@ export default {
           } = await axiosInstance.get("/api/auth/me", {
             headers: { Authorization: `Bearer ${token}` },
           })
+          cookies().set("user", JSON.stringify(user))
           return user
         } catch (error) {
           throw new Error(error)
@@ -78,6 +79,34 @@ export default {
         }
       }
       return token
+    },
+    async signIn({ user, account }: { user: AuthUser; account: Account }) {
+      //  user.
+      // TODO : add a backend api to signin with email
+      // check if the user already exits login eslse register
+      if (account.provider == "github") {
+        try {
+          const { email, name } = user
+          const res = await axiosInstance.post("/api/auth/register", {
+            username: name,
+            email: email,
+            password: "1234567890",
+          })
+          const token = await res.data.token
+
+          cookies().set("token", token)
+          const {
+            data: { data: newUser },
+          } = await axiosInstance.get("/api/auth/me", {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          cookies().set("user", JSON.stringify(newUser))
+          return true
+        } catch (error) {
+          return false
+        }
+      }
+      return true
     },
   },
   debug: process.env.NODE_ENV === "development",
